@@ -6,7 +6,7 @@ import '../interfaces/IERC20Minimal.sol';
 import '../interfaces/callback/ITingswapV3SwapCallback.sol';
 import '../interfaces/ITingswapV3Pool.sol';
 
-contract TestUniswapV3SwapPay is ITingswapV3SwapCallback {
+contract TestTingswapV3SwapPay is ITingswapV3SwapCallback {
     function swap(
         address pool,
         address recipient,
@@ -25,7 +25,7 @@ contract TestUniswapV3SwapPay is ITingswapV3SwapCallback {
         );
     }
 
-    function uniswapV3SwapCallback(
+    function tingswapV3SwapCallback(
         int256,
         int256,
         bytes calldata data

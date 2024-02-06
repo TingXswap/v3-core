@@ -8,7 +8,7 @@ import '../interfaces/IERC20Minimal.sol';
 import '../interfaces/callback/ITingswapV3SwapCallback.sol';
 import '../interfaces/ITingswapV3Pool.sol';
 
-contract TestUniswapV3Router is ITingswapV3SwapCallback {
+contract TestTingswapV3Router is ITingswapV3SwapCallback {
     using SafeCast for uint256;
 
     // flash swaps for an exact amount of token0 in the output pool
@@ -49,7 +49,7 @@ contract TestUniswapV3Router is ITingswapV3SwapCallback {
 
     event SwapCallback(int256 amount0Delta, int256 amount1Delta);
 
-    function uniswapV3SwapCallback(
+    function tingswapV3SwapCallback(
         int256 amount0Delta,
         int256 amount1Delta,
         bytes calldata data

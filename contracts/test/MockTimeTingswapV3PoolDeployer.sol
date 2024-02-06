@@ -3,9 +3,9 @@ pragma solidity =0.7.6;
 
 import '../interfaces/ITingswapV3PoolDeployer.sol';
 
-import './MockTimeUniswapV3Pool.sol';
+import './MockTimeTingswapV3Pool.sol';
 
-contract MockTimeUniswapV3PoolDeployer is ITingswapV3PoolDeployer {
+contract MockTimeTingswapV3PoolDeployer is ITingswapV3PoolDeployer {
     struct Parameters {
         address factory;
         address token0;
@@ -27,7 +27,7 @@ contract MockTimeUniswapV3PoolDeployer is ITingswapV3PoolDeployer {
     ) external returns (address pool) {
         parameters = Parameters({factory: factory, token0: token0, token1: token1, fee: fee, tickSpacing: tickSpacing});
         pool = address(
-            new MockTimeUniswapV3Pool{salt: keccak256(abi.encodePacked(token0, token1, fee, tickSpacing))}()
+            new MockTimeTingswapV3Pool{salt: keccak256(abi.encodePacked(token0, token1, fee, tickSpacing))}()
         );
         emit PoolDeployed(pool);
         delete parameters;

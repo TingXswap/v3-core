@@ -1,6 +1,6 @@
 import { Wallet } from 'ethers'
 import { ethers, waffle } from 'hardhat'
-import { UniswapV3Factory } from '../typechain/UniswapV3Factory'
+import { TingswapV3Factory } from '../typechain/TingswapV3Factory'
 import { expect } from './shared/expect'
 import snapshotGasCost from './shared/snapshotGasCost'
 
@@ -15,14 +15,14 @@ const TEST_ADDRESSES: [string, string] = [
 
 const createFixtureLoader = waffle.createFixtureLoader
 
-describe('UniswapV3Factory', () => {
+describe('TingswapV3Factory', () => {
   let wallet: Wallet, other: Wallet
 
-  let factory: UniswapV3Factory
+  let factory: TingswapV3Factory
   let poolBytecode: string
   const fixture = async () => {
-    const factoryFactory = await ethers.getContractFactory('UniswapV3Factory')
-    return (await factoryFactory.deploy()) as UniswapV3Factory
+    const factoryFactory = await ethers.getContractFactory('TingswapV3Factory')
+    return (await factoryFactory.deploy()) as TingswapV3Factory
   }
 
   let loadFixture: ReturnType<typeof createFixtureLoader>

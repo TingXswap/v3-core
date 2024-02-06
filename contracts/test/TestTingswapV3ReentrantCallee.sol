@@ -7,14 +7,14 @@ import '../interfaces/callback/ITingswapV3SwapCallback.sol';
 
 import '../interfaces/ITingswapV3Pool.sol';
 
-contract TestUniswapV3ReentrantCallee is ITingswapV3SwapCallback {
+contract TestTingswapV3ReentrantCallee is ITingswapV3SwapCallback {
     string private constant expectedReason = 'LOK';
 
     function swapToReenter(address pool) external {
         ITingswapV3Pool(pool).swap(address(0), false, 1, TickMath.MAX_SQRT_RATIO - 1, new bytes(0));
     }
 
-    function uniswapV3SwapCallback(
+    function tingswapV3SwapCallback(
         int256,
         int256,
         bytes calldata

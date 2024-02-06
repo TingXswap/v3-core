@@ -1,9 +1,9 @@
 import Decimal from 'decimal.js'
 import { BigNumber, BigNumberish, Wallet } from 'ethers'
 import { ethers, waffle } from 'hardhat'
-import { MockTimeUniswapV3Pool } from '../typechain/MockTimeUniswapV3Pool'
+import { MockTimeTingswapV3Pool } from '../typechain/MockTimeTingswapV3Pool'
 import { TickMathTest } from '../typechain/TickMathTest'
-import { UniswapV3PoolSwapTest } from '../typechain/UniswapV3PoolSwapTest'
+import { TingswapV3PoolSwapTest } from '../typechain/TingswapV3PoolSwapTest'
 import { expect } from './shared/expect'
 
 import { poolFixture } from './shared/fixtures'
@@ -95,8 +95,8 @@ describe('TingswapV3Pool.sol arbitrage tests', () => {
               pool,
             })
 
-            const testerFactory = await ethers.getContractFactory('UniswapV3PoolSwapTest')
-            const tester = (await testerFactory.deploy()) as UniswapV3PoolSwapTest
+            const testerFactory = await ethers.getContractFactory('TingswapV3PoolSwapTest')
+            const tester = (await testerFactory.deploy()) as TingswapV3PoolSwapTest
 
             const tickMathFactory = await ethers.getContractFactory('TickMathTest')
             const tickMath = (await tickMathFactory.deploy()) as TickMathTest
@@ -118,9 +118,9 @@ describe('TingswapV3Pool.sol arbitrage tests', () => {
           let swapToHigherPrice: SwapFunction
           let swapToLowerPrice: SwapFunction
           let swapExact1For0: SwapFunction
-          let pool: MockTimeUniswapV3Pool
+          let pool: MockTimeTingswapV3Pool
           let mint: MintFunction
-          let tester: UniswapV3PoolSwapTest
+          let tester: TingswapV3PoolSwapTest
           let tickMath: TickMathTest
 
           beforeEach('load the fixture', async () => {

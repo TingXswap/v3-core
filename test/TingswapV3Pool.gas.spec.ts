@@ -1,6 +1,6 @@
 import { ethers, waffle } from 'hardhat'
 import { Wallet } from 'ethers'
-import { MockTimeUniswapV3Pool } from '../typechain/MockTimeUniswapV3Pool'
+import { MockTimeTingswapV3Pool } from '../typechain/MockTimeTingswapV3Pool'
 import { expect } from './shared/expect'
 
 import { poolFixture } from './shared/fixtures'
@@ -74,7 +74,7 @@ describe('TingswapV3Pool.sol gas tests', () => {
       let swapExact0For1: SwapFunction
       let swapToHigherPrice: SwapToPriceFunction
       let swapToLowerPrice: SwapToPriceFunction
-      let pool: MockTimeUniswapV3Pool
+      let pool: MockTimeTingswapV3Pool
       let mint: MintFunction
 
       beforeEach('load the fixture', async () => {

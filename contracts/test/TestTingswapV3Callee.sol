@@ -12,7 +12,7 @@ import '../interfaces/callback/ITingswapV3FlashCallback.sol';
 
 import '../interfaces/ITingswapV3Pool.sol';
 
-contract TestUniswapV3Callee is ITingswapV3MintCallback, ITingswapV3SwapCallback, ITingswapV3FlashCallback {
+contract TestTingswapV3Callee is ITingswapV3MintCallback, ITingswapV3SwapCallback, ITingswapV3FlashCallback {
     using SafeCast for uint256;
 
     function swapExact0For1(
@@ -69,7 +69,7 @@ contract TestUniswapV3Callee is ITingswapV3MintCallback, ITingswapV3SwapCallback
 
     event SwapCallback(int256 amount0Delta, int256 amount1Delta);
 
-    function uniswapV3SwapCallback(
+    function tingswapV3SwapCallback(
         int256 amount0Delta,
         int256 amount1Delta,
         bytes calldata data
@@ -100,7 +100,7 @@ contract TestUniswapV3Callee is ITingswapV3MintCallback, ITingswapV3SwapCallback
 
     event MintCallback(uint256 amount0Owed, uint256 amount1Owed);
 
-    function uniswapV3MintCallback(
+    function tingswapV3MintCallback(
         uint256 amount0Owed,
         uint256 amount1Owed,
         bytes calldata data
@@ -127,7 +127,7 @@ contract TestUniswapV3Callee is ITingswapV3MintCallback, ITingswapV3SwapCallback
         ITingswapV3Pool(pool).flash(recipient, amount0, amount1, abi.encode(msg.sender, pay0, pay1));
     }
 
-    function uniswapV3FlashCallback(
+    function tingswapV3FlashCallback(
         uint256 fee0,
         uint256 fee1,
         bytes calldata data
