@@ -10,15 +10,15 @@ import '../../../../../contracts/TingswapV3Pool.sol';
 
 contract E2E_swap {
     SetupTokens tokens;
-    SetupUniswap uniswap;
+    SetupTingswap tingswap;
 
     TingswapV3Pool pool;
 
     TestERC20 token0;
     TestERC20 token1;
 
-    UniswapMinter minter;
-    UniswapSwapper swapper;
+    TingswapMinter minter;
+    TingswapSwapper swapper;
 
     int24[] usedTicks;
     bool inited;
@@ -47,10 +47,10 @@ contract E2E_swap {
         token0 = tokens.token0();
         token1 = tokens.token1();
 
-        uniswap = new SetupUniswap(token0, token1);
+        tingswap = new SetupTingswap(token0, token1);
 
-        minter = new UniswapMinter(token0, token1);
-        swapper = new UniswapSwapper(token0, token1);
+        minter = new TingswapMinter(token0, token1);
+        swapper = new TingswapSwapper(token0, token1);
 
         tokens.mintTo(0, address(swapper), 1e9 ether);
         tokens.mintTo(1, address(swapper), 1e9 ether);
@@ -306,8 +306,8 @@ contract E2E_swap {
         //
         // deploy the pool
         //
-        uniswap.createPool(poolParams.fee, poolParams.startPrice);
-        pool = uniswap.pool();
+        tingswap.createPool(poolParams.fee, poolParams.startPrice);
+        pool = tingswap.pool();
 
         //
         // set the pool inside the minter and swapper contracts
@@ -360,7 +360,7 @@ contract E2E_swap {
         uint160 sqrtPriceLimitX96 = get_random_zeroForOne_priceLimit(_amount);
         // console.log('sqrtPriceLimitX96 = %s', sqrtPriceLimitX96);
 
-        (UniswapSwapper.SwapperStats memory bfre, UniswapSwapper.SwapperStats memory aftr) =
+        (TingswapSwapper.SwapperStats memory bfre, TingswapSwapper.SwapperStats memory aftr) =
             swapper.doSwap(true, _amountSpecified, sqrtPriceLimitX96);
 
         check_swap_invariants(
@@ -394,7 +394,7 @@ contract E2E_swap {
         uint160 sqrtPriceLimitX96 = get_random_oneForZero_priceLimit(_amount);
         // console.log('sqrtPriceLimitX96 = %s', sqrtPriceLimitX96);
 
-        (UniswapSwapper.SwapperStats memory bfre, UniswapSwapper.SwapperStats memory aftr) =
+        (TingswapSwapper.SwapperStats memory bfre, TingswapSwapper.SwapperStats memory aftr) =
             swapper.doSwap(false, _amountSpecified, sqrtPriceLimitX96);
 
         check_swap_invariants(
@@ -428,7 +428,7 @@ contract E2E_swap {
         uint160 sqrtPriceLimitX96 = get_random_zeroForOne_priceLimit(_amount);
         // console.log('sqrtPriceLimitX96 = %s', sqrtPriceLimitX96);
 
-        (UniswapSwapper.SwapperStats memory bfre, UniswapSwapper.SwapperStats memory aftr) =
+        (TingswapSwapper.SwapperStats memory bfre, TingswapSwapper.SwapperStats memory aftr) =
             swapper.doSwap(true, _amountSpecified, sqrtPriceLimitX96);
 
         check_swap_invariants(
@@ -462,7 +462,7 @@ contract E2E_swap {
         uint160 sqrtPriceLimitX96 = get_random_oneForZero_priceLimit(_amount);
         // console.log('sqrtPriceLimitX96 = %s', sqrtPriceLimitX96);
 
-        (UniswapSwapper.SwapperStats memory bfre, UniswapSwapper.SwapperStats memory aftr) =
+        (TingswapSwapper.SwapperStats memory bfre, TingswapSwapper.SwapperStats memory aftr) =
             swapper.doSwap(false, _amountSpecified, sqrtPriceLimitX96);
 
         check_swap_invariants(

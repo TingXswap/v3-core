@@ -18,7 +18,7 @@ describe('Oracle', () => {
 
   const oracleFixture = async () => {
     const oracleTestFactory = await ethers.getContractFactory('OracleTest')
-    return (await oracleTestFactory.deploy()) as OracleTest
+    return (await oracleTestFactory.deploy()) as OracleTest | any
   }
 
   const initializedOracleFixture = async () => {

@@ -9,7 +9,7 @@ describe('BitMath', () => {
   let bitMath: BitMathTest
   const fixture = async () => {
     const factory = await ethers.getContractFactory('BitMathTest')
-    return (await factory.deploy()) as BitMathTest
+    return (await factory.deploy()) as BitMathTest | any
   }
   beforeEach('deploy BitMathTest', async () => {
     bitMath = await waffle.loadFixture(fixture)

@@ -96,10 +96,10 @@ describe('TingswapV3Pool.sol arbitrage tests', () => {
             })
 
             const testerFactory = await ethers.getContractFactory('TingswapV3PoolSwapTest')
-            const tester = (await testerFactory.deploy()) as TingswapV3PoolSwapTest
+            const tester = (await testerFactory.deploy()) as TingswapV3PoolSwapTest | any
 
             const tickMathFactory = await ethers.getContractFactory('TickMathTest')
-            const tickMath = (await tickMathFactory.deploy()) as TickMathTest
+            const tickMath = (await tickMathFactory.deploy()) as TickMathTest | any
 
             await fix.token0.approve(tester.address, MaxUint256)
             await fix.token1.approve(tester.address, MaxUint256)

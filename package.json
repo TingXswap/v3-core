@@ -5,7 +5,7 @@
   "publishConfig": {
     "access": "public"
   },
-  "version": "1.0.0",
+  "version": "1.0.2",
   "homepage": "https://tingswap.org",
   "keywords": [
     "tingswap",
@@ -27,7 +27,9 @@
   "engines": {
     "node": ">=10"
   },
-  "dependencies": {},
+  "dependencies": {
+    "dotenv": "^16.4.1"
+  },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.2",
     "@nomiclabs/hardhat-etherscan": "^2.1.8",
@@ -54,6 +56,8 @@
   },
   "scripts": {
     "compile": "hardhat compile",
-    "test": "hardhat test"
+    "test": "hardhat test",
+    "deploy": "npx hardhat run scripts/deploy_all.ts",
+    "verify": "npx hardhat run scripts/verify.ts"
   }
 }

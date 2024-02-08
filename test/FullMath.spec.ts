@@ -15,7 +15,7 @@ describe('FullMath', () => {
   let fullMath: FullMathTest
   before('deploy FullMathTest', async () => {
     const factory = await ethers.getContractFactory('FullMathTest')
-    fullMath = (await factory.deploy()) as FullMathTest
+    fullMath = (await factory.deploy()) as FullMathTest | any
   })
 
   describe('#mulDiv', () => {

@@ -37,7 +37,7 @@ const createFixtureLoader = waffle.createFixtureLoader
 type ThenArg<T> = T extends PromiseLike<infer U> ? U : T
 
 describe('TingswapV3Pool.sol', () => {
-  let wallet: Wallet, other: Wallet
+  let wallet: Wallet, other: Wallet | any
 
   let token0: TestERC20
   let token1: TestERC20
@@ -1349,8 +1349,8 @@ describe('TingswapV3Pool.sol', () => {
   // https://github.com/Tingswap/tingswap-v3-core/issues/214
   it('tick transition cannot run twice if zero for one swap ends at fractional price just below tick', async () => {
     pool = await createPool(FeeAmount.MEDIUM, 1)
-    const sqrtTickMath = (await (await ethers.getContractFactory('TickMathTest')).deploy()) as TickMathTest
-    const swapMath = (await (await ethers.getContractFactory('SwapMathTest')).deploy()) as SwapMathTest
+    const sqrtTickMath = (await (await ethers.getContractFactory('TickMathTest')).deploy()) as TickMathTest | any
+    const swapMath = (await (await ethers.getContractFactory('SwapMathTest')).deploy()) as SwapMathTest | any
     const p0 = (await sqrtTickMath.getSqrtRatioAtTick(-24081)).add(1)
     // initialize at a price of ~0.3 token1/token0
     // meaning if you swap in 2 token0, you should end up getting 0 token1
@@ -1686,7 +1686,7 @@ describe('TingswapV3Pool.sol', () => {
     it('cannot reenter from swap callback', async () => {
       const reentrant = (await (
         await ethers.getContractFactory('TestTingswapV3ReentrantCallee')
-      ).deploy()) as TestTingswapV3ReentrantCallee
+      ).deploy()) as TestTingswapV3ReentrantCallee | any
 
       // the tests happen in solidity
       await expect(reentrant.swapToReenter(pool.address)).to.be.revertedWith('Unable to reenter')
@@ -1972,7 +1972,7 @@ describe('TingswapV3Pool.sol', () => {
     let underpay: TestTingswapV3SwapPay
     beforeEach('deploy swap test', async () => {
       const underpayFactory = await ethers.getContractFactory('TestTingswapV3SwapPay')
-      underpay = (await underpayFactory.deploy()) as TestTingswapV3SwapPay
+      underpay = (await underpayFactory.deploy()) as TestTingswapV3SwapPay | any
       await token0.approve(underpay.address, constants.MaxUint256)
       await token1.approve(underpay.address, constants.MaxUint256)
       await pool.initialize(encodePriceSqrt(1, 1))

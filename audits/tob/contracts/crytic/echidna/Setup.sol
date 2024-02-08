@@ -31,7 +31,7 @@ contract SetupTokens {
         tokenSetup1 = new SetupToken();
 
         // switch them around so that token0's address is lower than token1's
-        // since this is what the uniswap factory will do when you create the pool
+        // since this is what the tingswap factory will do when you create the pool
         if (address(tokenSetup0.token()) > address(tokenSetup1.token())) {
             (tokenSetup0, tokenSetup1) = (tokenSetup1, tokenSetup0);
         }
@@ -53,7 +53,7 @@ contract SetupTokens {
     }
 }
 
-contract SetupUniswap {
+contract SetupTingswap {
     TingswapV3Pool public pool;
     TestERC20 token0;
     TestERC20 token1;
@@ -65,7 +65,7 @@ contract SetupUniswap {
     TingswapV3Factory factory;
 
     constructor(TestERC20 _token0, TestERC20 _token1) public {
-        factory = new UniswapV3Factory();
+        factory = new TingswapV3Factory();
         token0 = _token0;
         token1 = _token1;
     }
@@ -76,7 +76,7 @@ contract SetupUniswap {
     }
 }
 
-contract UniswapMinter {
+contract TingswapMinter {
     TingswapV3Pool pool;
     TestERC20 token0;
     TestERC20 token1;
@@ -98,7 +98,7 @@ contract UniswapMinter {
         pool = _pool;
     }
 
-    function uniswapV3MintCallback(
+    function tingswapV3MintCallback(
         uint256 amount0Owed,
         uint256 amount1Owed,
         bytes calldata data
@@ -148,7 +148,7 @@ contract UniswapMinter {
     }
 }
 
-contract UniswapSwapper {
+contract TingswapSwapper {
     TingswapV3Pool pool;
     TestERC20 token0;
     TestERC20 token1;
@@ -171,7 +171,7 @@ contract UniswapSwapper {
         pool = _pool;
     }
 
-    function uniswapV3SwapCallback(
+    function tingswapV3SwapCallback(
         int256 amount0Delta,
         int256 amount1Delta,
         bytes calldata data
